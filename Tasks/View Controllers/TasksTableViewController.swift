@@ -11,6 +11,8 @@ import CoreData
 
 class TasksTableViewController: UITableViewController {
     
+    let taskController = TaskController()
+    
     lazy var fetchedResultsController: NSFetchedResultsController<Task> = {
         let fetchRequest: NSFetchRequest<Task> = Task.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "priority", ascending: true),
@@ -22,6 +24,14 @@ class TasksTableViewController: UITableViewController {
         return frc
     }()
 
+    @IBAction func refresh(_ sender: UIRefreshControl) {
+        taskController.fetchTasksFromServer { (_) in
+            DispatchQueue.main.async {
+                self.refreshControl?.endRefreshing()
+            }
+        }
+    }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -53,12 +63,20 @@ class TasksTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             let task = fetchedResultsController.object(at: indexPath)
-            CoreDataStack.shared.mainContext.delete(task)
-            do {
-                try CoreDataStack.shared.mainContext.save()
-            } catch {
-                CoreDataStack.shared.mainContext.reset()
-                NSLog("Error saving managed object context: \(error)")
+            taskController.deleteTaskFromServer(task: task) { result in
+                guard let _ = try? result.get() else {
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    CoreDataStack.shared.mainContext.delete(task)
+                    do {
+                        try CoreDataStack.shared.mainContext.save()
+                    } catch {
+                        CoreDataStack.shared.mainContext.reset()
+                        NSLog("Error saving managed object context: \(error)")
+                    }
+                }
             }
         }
     }
@@ -71,6 +89,12 @@ class TasksTableViewController: UITableViewController {
             if let detailVC = segue.destination as? TaskDetailViewController,
                 let indexPath = tableView.indexPathForSelectedRow {
                 detailVC.task = fetchedResultsController.object(at: indexPath)
+                detailVC.taskController = taskController
+            }
+        } else if segue.identifier == "CreateTaskModalSegue" {
+            if let navC = segue.destination as? UINavigationController,
+                let createTaskVC = navC.viewControllers.first as? CreateTaskViewController {
+                createTaskVC.taskController = taskController
             }
         }
     }

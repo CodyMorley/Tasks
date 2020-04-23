@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5EB5B4B72450AA6D00555D46 /* TaskRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB5B4B62450AA6D00555D46 /* TaskRepresentation.swift */; };
+		5EB5B4B92450B03300555D46 /* TaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB5B4B82450B03300555D46 /* TaskController.swift */; };
 		CEB45198244DFF8E00E5F9AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45197244DFF8E00E5F9AD /* AppDelegate.swift */; };
 		CEB4519A244DFF8E00E5F9AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45199244DFF8E00E5F9AD /* SceneDelegate.swift */; };
 		CEB4519C244DFF8E00E5F9AD /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4519B244DFF8E00E5F9AD /* CreateTaskViewController.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5EB5B4B62450AA6D00555D46 /* TaskRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepresentation.swift; sourceTree = "<group>"; };
+		5EB5B4B82450B03300555D46 /* TaskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskController.swift; sourceTree = "<group>"; };
 		CEB45194244DFF8E00E5F9AD /* Tasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB45197244DFF8E00E5F9AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEB45199244DFF8E00E5F9AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				CEB451B4244E085800E5F9AD /* Task+Convenience.swift */,
+				5EB5B4B62450AA6D00555D46 /* TaskRepresentation.swift */,
+				5EB5B4B82450B03300555D46 /* TaskController.swift */,
 				CEB451BA244E08CA00E5F9AD /* Core Data */,
 			);
 			path = Models;
@@ -204,8 +210,10 @@
 				CEB4519C244DFF8E00E5F9AD /* CreateTaskViewController.swift in Sources */,
 				CEB451B5244E085800E5F9AD /* Task+Convenience.swift in Sources */,
 				CEB45198244DFF8E00E5F9AD /* AppDelegate.swift in Sources */,
+				5EB5B4B92450B03300555D46 /* TaskController.swift in Sources */,
 				CEB4519A244DFF8E00E5F9AD /* SceneDelegate.swift in Sources */,
 				CEB451AD244E002B00E5F9AD /* Tasks.xcdatamodeld in Sources */,
+				5EB5B4B72450AA6D00555D46 /* TaskRepresentation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
